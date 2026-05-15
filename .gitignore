@@ -1,0 +1,13 @@
+# Fichiers de configuration locale
+.claude/
+
+# Dossier uploads (les affiches uploadées ne vont pas sur git)
+uploads/*
+!uploads/.gitkeep
+
+# Fichiers système
+Thumbs.db
+.DS_Store
+
+# Démo design
+demo-design.html

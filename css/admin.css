@@ -1,0 +1,146 @@
+/* ===== PAGE ADMIN ===== */
+.page-admin {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.page-admin h1 {
+    margin-bottom: 30px;
+}
+
+/* ===== ONGLETS ADMIN ===== */
+.admin-onglets {
+    display: flex;
+    gap: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #2a2a4a;
+    flex-wrap: wrap;
+}
+
+.admin-onglet {
+    padding: 12px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #8a8a9a;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-onglet:hover {
+    color: #e0e0e0;
+}
+
+.admin-onglet.actif {
+    color: #7C3AED;
+    border-bottom-color: #7C3AED;
+}
+
+/* ===== TABLEAU ADMIN ===== */
+.admin-tableau {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.admin-tableau th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8a8a9a;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.admin-tableau td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #1a1a2e;
+    color: #e0e0e0;
+}
+
+.admin-tableau tr:hover {
+    background-color: #1a1a2e;
+}
+
+/* ===== BADGES STATUT ===== */
+.statut-valide {
+    color: #00c853;
+    font-weight: 500;
+}
+
+.statut-attente {
+    color: #FBBF24;
+    font-weight: 500;
+}
+
+/* ===== ACTIONS DANS LE TABLEAU ===== */
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-actions form {
+    display: inline;
+}
+
+.btn-admin {
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-valider {
+    background-color: rgba(0, 200, 83, 0.15);
+    color: #00c853;
+}
+
+.btn-valider:hover {
+    background-color: rgba(0, 200, 83, 0.3);
+}
+
+.btn-supprimer {
+    background-color: rgba(255, 77, 77, 0.15);
+    color: #ff4d4d;
+}
+
+.btn-supprimer:hover {
+    background-color: rgba(255, 77, 77, 0.3);
+}
+
+/* ===== SECTION ADMIN ===== */
+.admin-section {
+    display: none;
+}
+
+.admin-section.visible {
+    display: block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .page-admin {
+        padding: 20px;
+    }
+
+    .admin-tableau {
+        font-size: 12px;
+    }
+
+    .admin-tableau th,
+    .admin-tableau td {
+        padding: 10px 8px;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+}
