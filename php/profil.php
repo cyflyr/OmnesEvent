@@ -11,8 +11,8 @@ if (!isset($_SESSION['id'])) {
 
 $user_id = $_SESSION['id'];
 
-//on récupère les inscriptions à venir
-$req_avenir = $bdd->prepare("SELECT e.*, i.date_inscription AS date_inscr, i.statut AS statut_inscr
+//on récupère les inscriptions à venir avec le code billet
+$req_avenir = $bdd->prepare("SELECT e.*, i.date_inscription AS date_inscr, i.statut AS statut_inscr, i.code_billet
     FROM inscriptions i
     JOIN evenements e ON i.evenement_id = e.id
     WHERE i.utilisateur_id = ? AND i.statut = 'inscrit' AND e.date_event >= CURDATE()
@@ -86,7 +86,15 @@ if ($_SESSION['role'] === 'organisateur' || $_SESSION['role'] === 'administrateu
                                     <h3><?php echo htmlspecialchars($billet['titre']); ?></h3>
                                     <p><?php echo date('d/m/Y', strtotime($billet['date_event'])); ?> à <?php echo date('H\hi', strtotime($billet['heure'])); ?></p>
                                     <p><?php echo htmlspecialchars($billet['lieu']); ?></p>
+                                    <?php if ($billet['code_billet']): ?>
+                                        <p class="billet-code"><?php echo htmlspecialchars($billet['code_billet']); ?></p>
+                                    <?php endif; ?>
                                 </div>
+                                <?php if ($billet['code_billet']): ?>
+                                    <div class="billet-qr">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=<?php echo urlencode($billet['code_billet']); ?>" alt="QR Code" class="qr-mini">
+                                    </div>
+                                <?php endif; ?>
                                 <div class="billet-actions">
                                     <a href="evenement.php?id=<?php echo $billet['id']; ?>" class="btn btn-outline btn-small">Voir</a>
                                     <form action="annuler_inscription.php" method="POST">

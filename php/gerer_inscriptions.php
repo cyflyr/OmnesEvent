@@ -100,6 +100,7 @@ $inscrits = $req_inscrits->fetchAll(PDO::FETCH_ASSOC);
                                 <th>Nom</th>
                                 <th>Email</th>
                                 <th>Date d'inscription</th>
+                                <th>Code billet</th>
                                 <th>Présent</th>
                             </tr>
                         </thead>
@@ -111,6 +112,7 @@ $inscrits = $req_inscrits->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo htmlspecialchars($inscrit['prenom'] . ' ' . $inscrit['nom']); ?></td>
                                     <td><?php echo htmlspecialchars($inscrit['email']); ?></td>
                                     <td><?php echo date('d/m/Y H:i', strtotime($inscrit['date_inscription'])); ?></td>
+                                    <td class="code-billet-cell"><?php echo htmlspecialchars($inscrit['code_billet'] ?? '—'); ?></td>
                                     <td>
                                         <input type="checkbox" name="presents[]" value="<?php echo $inscrit['utilisateur_id']; ?>" <?php if ($inscrit['present']) echo 'checked'; ?>>
                                     </td>

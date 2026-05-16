@@ -94,6 +94,12 @@
     accent-color: #7C3AED;
 }
 
+.code-billet-cell {
+    font-family: monospace;
+    font-size: 12px;
+    color: #7C3AED;
+}
+
 /* ===== MESSAGE AUCUN INSCRIT ===== */
 .aucun-inscrit {
     text-align: center;

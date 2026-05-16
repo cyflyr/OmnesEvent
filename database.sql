@@ -39,9 +39,10 @@ CREATE TABLE inscriptions (
     evenement_id INT NOT NULL,
     date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
     statut ENUM('inscrit', 'annule') DEFAULT 'inscrit',
+    present TINYINT(1) DEFAULT 0,
+    code_billet VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id),
     FOREIGN KEY (evenement_id) REFERENCES evenements(id),
-    present TINYINT(1) DEFAULT 0,
     UNIQUE(utilisateur_id, evenement_id)
 );
 

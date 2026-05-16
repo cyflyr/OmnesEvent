@@ -81,6 +81,37 @@
     font-weight: 500;
 }
 
+/* ===== QR CODE BILLET ===== */
+.qr-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #0f0f1a;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.qr-label {
+    font-size: 14px;
+    color: #8a8a9a;
+    margin-bottom: 12px;
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    background-color: white;
+    padding: 8px;
+}
+
+.qr-code-texte {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #7C3AED;
+    font-weight: 500;
+    font-family: monospace;
+}
+
 .event-organisateur {
     margin-top: 30px;
     padding-top: 20px;

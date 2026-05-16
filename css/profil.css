@@ -101,6 +101,26 @@
     opacity: 0.5;
 }
 
+/* ===== QR CODE MINI SUR LES BILLETS ===== */
+.billet-code {
+    font-family: monospace;
+    font-size: 12px;
+    color: #7C3AED;
+    margin-top: 4px;
+}
+
+.billet-qr {
+    flex-shrink: 0;
+}
+
+.qr-mini {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    background-color: white;
+    padding: 4px;
+}
+
 /* ===== MESSAGE AUCUN BILLET ===== */
 .aucun-billet {
     text-align: center;

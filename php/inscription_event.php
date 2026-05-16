@@ -44,14 +44,17 @@ if (isset($_POST['evenement_id'])) {
     $ancien->execute(array($user_id, $event_id));
     $ancienne_inscr = $ancien->fetch();
 
+    //on génère un code unique pour le billet
+    $code_billet = 'OMNES-' . $user_id . '-' . $event_id . '-' . substr(uniqid(), -8);
+
     if ($ancienne_inscr) {
-        //on réactive l'ancienne inscription
-        $update = $bdd->prepare("UPDATE inscriptions SET statut = 'inscrit', date_inscription = NOW() WHERE id = ?");
-        $update->execute(array($ancienne_inscr['id']));
+        //on réactive l'ancienne inscription avec un nouveau code billet
+        $update = $bdd->prepare("UPDATE inscriptions SET statut = 'inscrit', date_inscription = NOW(), code_billet = ? WHERE id = ?");
+        $update->execute(array($code_billet, $ancienne_inscr['id']));
     } else {
-        //nouvelle inscription
-        $insert = $bdd->prepare("INSERT INTO inscriptions (utilisateur_id, evenement_id) VALUES (?, ?)");
-        $insert->execute(array($user_id, $event_id));
+        //nouvelle inscription avec code billet
+        $insert = $bdd->prepare("INSERT INTO inscriptions (utilisateur_id, evenement_id, code_billet) VALUES (?, ?, ?)");
+        $insert->execute(array($user_id, $event_id, $code_billet));
     }
 
     header('Location: evenement.php?id=' . $event_id . '&succes=inscrit');

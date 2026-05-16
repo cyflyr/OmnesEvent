@@ -26,12 +26,17 @@ if (!$event) {
     exit();
 }
 
-//on vérifie si l'utilisateur est déjà inscrit
+//on vérifie si l'utilisateur est déjà inscrit et on récupère son code billet
 $deja_inscrit = false;
+$code_billet = null;
 if (isset($_SESSION['id'])) {
-    $verif = $bdd->prepare("SELECT id FROM inscriptions WHERE utilisateur_id = ? AND evenement_id = ? AND statut = 'inscrit'");
+    $verif = $bdd->prepare("SELECT id, code_billet FROM inscriptions WHERE utilisateur_id = ? AND evenement_id = ? AND statut = 'inscrit'");
     $verif->execute(array($_SESSION['id'], $id_event));
-    $deja_inscrit = $verif->fetch() ? true : false;
+    $inscription = $verif->fetch(PDO::FETCH_ASSOC);
+    if ($inscription) {
+        $deja_inscrit = true;
+        $code_billet = $inscription['code_billet'];
+    }
 }
 
 $complet = ($event['nb_inscrits'] >= $event['capacite_max']);
@@ -153,6 +158,17 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
 
                 <?php elseif ($deja_inscrit): ?>
                     <p class="texte-muted">Vous êtes inscrit à cet événement.</p>
+
+                    <!-- QR Code du billet -->
+                    <?php if ($code_billet): ?>
+                        <div class="qr-section">
+                            <p class="qr-label">Votre billet :</p>
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<?php echo urlencode($code_billet); ?>" alt="QR Code billet" class="qr-image">
+                            <p class="qr-code-texte"><?php echo htmlspecialchars($code_billet); ?></p>
+                            <a href="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=<?php echo urlencode($code_billet); ?>" download="billet-<?php echo $code_billet; ?>.png" class="btn btn-outline btn-small mt-10">Télécharger le QR code</a>
+                        </div>
+                    <?php endif; ?>
+
                     <form action="annuler_inscription.php" method="POST">
                         <input type="hidden" name="evenement_id" value="<?php echo $event['id']; ?>">
                         <button type="submit" class="btn btn-danger mt-20">Annuler mon inscription</button>
