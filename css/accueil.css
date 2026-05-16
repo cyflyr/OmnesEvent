@@ -1,33 +1,94 @@
-/* ===== HERO / SECTION D'EN-TETE ===== */
+/* HERO / SECTION D'EN-TETE  */
 .hero {
-    padding: 80px 40px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 64px 40px 58px 40px;
     text-align: center;
+    background:
+        radial-gradient(circle at 50% 8%, rgba(124, 58, 237, 0.34), transparent 30%),
+        radial-gradient(circle at 18% 26%, rgba(59, 130, 246, 0.2), transparent 28%),
+        radial-gradient(circle at 82% 22%, rgba(251, 191, 36, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(26, 26, 46, 0.78), rgba(15, 15, 26, 0));
+    border-bottom: 1px solid rgba(124, 58, 237, 0.16);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 74%);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    z-index: -1;
+    width: min(760px, 88vw);
+    height: min(360px, 54vw);
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.18), rgba(124, 58, 237, 0.12) 35%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.95;
+}
+
+.hero-logo {
+    display: block;
+    width: min(210px, 58vw);
+    height: auto;
+    margin: 0 auto 18px auto;
+    filter:
+        drop-shadow(0 0 22px rgba(124, 58, 237, 0.42))
+        drop-shadow(0 12px 34px rgba(0, 0, 0, 0.34));
+}
+
+.hero h1 {
+    max-width: 830px;
+    margin: 0 auto;
+    font-size: clamp(31px, 5vw, 52px);
+    line-height: 1.08;
+    text-wrap: balance;
 }
 
 .hero h1 span {
-    color: #7C3AED;
+    color: #a78bfa;
+    text-shadow: 0 0 26px rgba(124, 58, 237, 0.62);
 }
 
 .hero p {
-    font-size: 18px;
-    color: #8a8a9a;
-    max-width: 550px;
-    margin: 0 auto 32px auto;
+    font-size: 17px;
+    color: #c7c2d8;
+    max-width: 660px;
+    margin: 16px auto 0 auto;
 }
 
 /* ===== BARRE DE RECHERCHE ===== */
 .search-section {
-    padding: 0 40px 40px 40px;
-    max-width: 900px;
+    position: relative;
+    z-index: 2;
+    padding: 0 40px 36px 40px;
+    max-width: 980px;
     margin: 0 auto;
+    transform: translateY(-36px);
 }
 
 .search-bar {
     display: flex;
     gap: 12px;
-    background-color: #1a1a2e;
-    padding: 12px 16px;
-    border-radius: 12px;
+    align-items: center;
+    background: rgba(26, 26, 46, 0.9);
+    padding: 14px;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 18px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.34), 0 0 46px rgba(124, 58, 237, 0.14);
+    backdrop-filter: blur(16px);
 }
 
 .search-bar input {
@@ -38,84 +99,123 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     outline: none;
+    min-height: 38px;
+    padding: 0 6px;
 }
 
 .search-bar input::placeholder {
-    color: #555;
+    color: #6f6b80;
 }
 
-/* ===== FILTRES PAR CATEGORIE ===== */
+.search-bar .btn {
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.32);
+}
+
+/*  FILTRES PAR CATEGORIE  */
 .filtres {
     display: flex;
     gap: 10px;
-    margin-top: 16px;
+    justify-content: center;
+    margin-top: 14px;
     flex-wrap: wrap;
 }
 
 .filtre-btn {
-    padding: 8px 18px;
-    border-radius: 20px;
-    border: 1px solid #2a2a4a;
-    background: transparent;
-    color: #8a8a9a;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 58, 237, 0.22);
+    background: rgba(26, 26, 46, 0.56);
+    color: #aca7bc;
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .filtre-btn:hover,
 .filtre-btn.actif {
-    border-color: #7C3AED;
-    color: #7C3AED;
+    border-color: rgba(167, 139, 250, 0.72);
+    background: rgba(124, 58, 237, 0.16);
+    color: #ffffff;
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.2);
 }
 
-/* ===== TITRE DE SECTION ===== */
+.filtre-btn:hover {
+    transform: translateY(-1px);
+}
+
+/*  TITRE DE SECTION  */
 .section-titre {
-    padding: 40px 40px 20px 40px;
-    font-size: 26px;
+    padding: 0 40px 22px 40px;
+    font-size: 30px;
     font-weight: 600;
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
-/* ===== GRILLE DES EVENEMENTS ===== */
+/*  GRILLE DES EVENEMENTS  */
 .grille-events {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
-    padding: 0 40px 60px 40px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 40px 72px 40px;
 }
 
-/* ===== CARTE EVENEMENT ===== */
+/*  CARTE EVENEMENT  */
 .carte-event {
-    background-color: #1a1a2e;
-    border-radius: 12px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(31, 31, 55, 0.96), rgba(19, 19, 34, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     display: block;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+}
+
+.carte-event::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 32%);
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 .carte-event:hover {
-    transform: translateY(-3px);
+    transform: translateY(-6px);
+    border-color: rgba(167, 139, 250, 0.38);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), 0 0 34px rgba(124, 58, 237, 0.14);
+}
+
+.carte-event:hover::after {
+    opacity: 1;
 }
 
 .carte-event-image {
     width: 100%;
-    height: 200px;
+    height: 210px;
     object-fit: cover;
     display: block;
 }
 
 .carte-event-placeholder {
-    background-color: #2a2a4a;
+    background:
+        radial-gradient(circle at 35% 30%, rgba(124, 58, 237, 0.36), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.22), transparent 36%),
+        #23233f;
 }
 
 .carte-event-body {
-    padding: 18px;
+    padding: 20px;
 }
 
 .carte-event-titre {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     margin: 10px 0 8px 0;
     color: #ffffff;
@@ -123,22 +223,41 @@
 
 .carte-event-info {
     font-size: 13px;
-    color: #8a8a9a;
+    color: #aaa4bb;
     margin-bottom: 4px;
 }
 
-/* ===== MESSAGE SI AUCUN EVENEMENT ===== */
+/*  MESSAGE SI AUCUN EVENEMENT  */
 .aucun-event {
     text-align: center;
     padding: 60px 40px;
-    color: #8a8a9a;
+    color: #aaa4bb;
     font-size: 16px;
 }
 
-/* ===== RESPONSIVE ===== */
+/*  RESPONSIVE  */
 @media (max-width: 768px) {
     .hero {
-        padding: 60px 20px;
+        padding: 46px 20px 44px 20px;
+    }
+
+    .hero-logo {
+        width: min(165px, 56vw);
+        margin-bottom: 16px;
+    }
+
+    .hero h1 {
+        font-size: clamp(27px, 8vw, 38px);
+    }
+
+    .hero p {
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    .search-section {
+        transform: translateY(-30px);
+        padding-bottom: 22px;
     }
 
     .search-section,
@@ -154,6 +273,8 @@
 
     .search-bar {
         flex-direction: column;
+        align-items: stretch;
+        border-radius: 16px;
     }
 
     .search-bar .btn {
