@@ -57,6 +57,7 @@ $evenements = $req->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Section hero -->
         <section class="hero">
+            <img src="images/omnesevent-logo-final.png" alt="OmnesEvent" class="hero-logo">
             <h1>Tous les events d'<span>Omnes</span>,<br>au même endroit.</h1>
             <p>Découvrez les soirées, tournois, conférences et bien plus. Réservez votre place en un clic.</p>
         </section>
