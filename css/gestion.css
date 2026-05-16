@@ -1,0 +1,119 @@
+/* ===== PAGE GESTION DES INSCRIPTIONS ===== */
+.page-gestion {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.page-gestion h1 {
+    margin-bottom: 4px;
+}
+
+.sous-texte-gestion {
+    color: #8a8a9a;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* ===== LIEN RETOUR ===== */
+.lien-retour {
+    color: #7C3AED;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.lien-retour:hover {
+    color: #6D28D9;
+}
+
+/* ===== STATS EN HAUT ===== */
+.stats-gestion {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.stat-box {
+    background-color: #1a1a2e;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.stat-nombre {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #7C3AED;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #8a8a9a;
+}
+
+/* ===== TABLEAU DES INSCRITS ===== */
+.table-inscrits {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a2e;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-inscrits thead {
+    background-color: #16213e;
+}
+
+.table-inscrits th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8a8a9a;
+}
+
+.table-inscrits td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #e0e0e0;
+    border-top: 1px solid #2a2a4a;
+}
+
+.table-inscrits tbody tr:hover {
+    background-color: #1f1f38;
+}
+
+.table-inscrits input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #7C3AED;
+}
+
+/* ===== MESSAGE AUCUN INSCRIT ===== */
+.aucun-inscrit {
+    text-align: center;
+    padding: 40px;
+    color: #8a8a9a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .page-gestion {
+        padding: 20px;
+    }
+
+    .stats-gestion {
+        flex-direction: column;
+    }
+
+    .table-inscrits th,
+    .table-inscrits td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}

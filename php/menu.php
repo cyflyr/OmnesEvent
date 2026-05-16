@@ -25,18 +25,8 @@
 
     <div class="navbar-right">
         <?php if (isset($_SESSION['id'])): ?>
-            <!-- Menu profil si connecté -->
-            <div class="profil-container">
-                <button class="btn-profil" id="btn-profil">
-                    <?php echo htmlspecialchars($_SESSION['prenom'])[0]; ?>
-                </button>
-                <div class="menu-profil" id="menu-profil">
-                    <span class="profil-nom">Salut, <?php echo htmlspecialchars($_SESSION['prenom']); ?></span>
-                    <span class="profil-role"><?php echo ucfirst($_SESSION['role']); ?></span>
-                    <a href="<?php echo $racine; ?>php/profil.php" class="profil-lien">Mon profil</a>
-                    <a href="<?php echo $racine; ?>php/logout.php" class="btn btn-outline btn-small">Déconnexion</a>
-                </div>
-            </div>
+            <a href="<?php echo $racine; ?>php/profil.php" class="btn btn-outline btn-small">Mon profil</a>
+            <a href="<?php echo $racine; ?>php/logout.php" class="btn btn-primary btn-small">Déconnexion</a>
         <?php else: ?>
             <a href="<?php echo $racine; ?>php/login.php" class="btn btn-outline btn-small">Connexion</a>
             <a href="<?php echo $racine; ?>php/inscription.php" class="btn btn-primary btn-small">Inscription</a>
@@ -62,7 +52,12 @@
 
     <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
 
-    <?php if (!isset($_SESSION['id'])): ?>
+    <div class="menu-mobile-separator"></div>
+
+    <?php if (isset($_SESSION['id'])): ?>
+        <a href="<?php echo $racine; ?>php/profil.php">Mon profil</a>
+        <a href="<?php echo $racine; ?>php/logout.php">Déconnexion</a>
+    <?php else: ?>
         <a href="<?php echo $racine; ?>php/login.php">Connexion</a>
         <a href="<?php echo $racine; ?>php/inscription.php">Inscription</a>
     <?php endif; ?>

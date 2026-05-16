@@ -5,11 +5,11 @@ require_once('connexion.php');
 //on vérifie que tous les champs sont remplis
 if (isset($_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['nom_utilisateur'], $_POST['password'], $_POST['password_confirmation'], $_POST['role'])) {
 
-    $prenom = htmlspecialchars($_POST['prenom']);
-    $nom = htmlspecialchars($_POST['nom']);
-    $email = htmlspecialchars($_POST['email']);
-    $nom_u = htmlspecialchars($_POST['nom_utilisateur']);
-    $role = htmlspecialchars($_POST['role']);
+    $prenom = trim($_POST['prenom']);
+    $nom = trim($_POST['nom']);
+    $email = trim($_POST['email']);
+    $nom_u = trim($_POST['nom_utilisateur']);
+    $role = $_POST['role'];
 
     $mdp = $_POST['password'];
     $mdp_conf = $_POST['password_confirmation'];

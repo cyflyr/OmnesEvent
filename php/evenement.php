@@ -67,12 +67,25 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
                 <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
             </div>
 
+            <!-- Boutons de gestion pour l'organisateur ou l'admin -->
+            <?php if (isset($_SESSION['id']) && ($_SESSION['role'] === 'administrateur' || $event['organisateur_id'] == $_SESSION['id'])): ?>
+                <div class="event-actions-orga">
+                    <a href="modifier_evenement.php?id=<?php echo $event['id']; ?>" class="btn btn-outline btn-small">Modifier</a>
+                    <a href="gerer_inscriptions.php?id=<?php echo $event['id']; ?>" class="btn btn-outline btn-small">Gérer les inscrits</a>
+                    <form action="supprimer_evenement.php" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet événement ?');">
+                        <input type="hidden" name="event_id" value="<?php echo $event['id']; ?>">
+                        <button type="submit" class="btn btn-danger btn-small">Supprimer</button>
+                    </form>
+                </div>
+            <?php endif; ?>
+
             <!-- Messages de succès/erreur -->
             <?php if (isset($_GET['succes'])): ?>
                 <div class="message-succes">
                     <?php
                     if ($_GET['succes'] === 'inscrit') echo 'Vous êtes bien inscrit à cet événement !';
                     if ($_GET['succes'] === 'annule') echo 'Votre inscription a bien été annulée.';
+                    if ($_GET['succes'] === 'modifie') echo 'L\'événement a bien été modifié.';
                     ?>
                 </div>
             <?php endif; ?>

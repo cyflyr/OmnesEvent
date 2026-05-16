@@ -11,13 +11,13 @@ if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'organisateur' && $_SESS
 //vérification des champs obligatoires
 if (isset($_POST['titre'], $_POST['description'], $_POST['date_event'], $_POST['heure'], $_POST['lieu'], $_POST['categorie'], $_POST['capacite_max'])) {
 
-    $titre = htmlspecialchars($_POST['titre']);
-    $description = htmlspecialchars($_POST['description']);
+    $titre = trim($_POST['titre']);
+    $description = trim($_POST['description']);
     $date_event = $_POST['date_event'];
     $heure = $_POST['heure'];
-    $lieu = htmlspecialchars($_POST['lieu']);
-    $categorie = htmlspecialchars($_POST['categorie']);
-    $association = htmlspecialchars($_POST['association'] ?? '');
+    $lieu = trim($_POST['lieu']);
+    $categorie = $_POST['categorie'];
+    $association = trim($_POST['association'] ?? '');
     $capacite_max = (int)$_POST['capacite_max'];
     $organisateur_id = $_SESSION['id'];
 

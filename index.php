@@ -8,8 +8,6 @@ $racine = '';
 //on récupère les filtres de recherche si ils existent
 $recherche = isset($_GET['recherche']) ? htmlspecialchars($_GET['recherche']) : '';
 $categorie = isset($_GET['categorie']) ? htmlspecialchars($_GET['categorie']) : '';
-$date_filtre = isset($_GET['date']) ? htmlspecialchars($_GET['date']) : '';
-
 //construction de la requête SQL avec les filtres
 $sql = "SELECT e.*, u.prenom AS orga_prenom, u.nom AS orga_nom,
         (SELECT COUNT(*) FROM inscriptions i WHERE i.evenement_id = e.id AND i.statut = 'inscrit') AS nb_inscrits
@@ -30,12 +28,6 @@ if ($recherche !== '') {
 if ($categorie !== '' && $categorie !== 'tous') {
     $sql .= " AND e.categorie = ?";
     $params[] = $categorie;
-}
-
-//filtre par date
-if ($date_filtre !== '') {
-    $sql .= " AND e.date_event = ?";
-    $params[] = $date_filtre;
 }
 
 //on trie par date la plus proche
@@ -74,7 +66,6 @@ $evenements = $req->fetchAll(PDO::FETCH_ASSOC);
             <form method="GET" action="index.php">
                 <div class="search-bar">
                     <input type="text" name="recherche" placeholder="Rechercher un événement..." value="<?php echo $recherche; ?>">
-                    <input type="date" name="date" value="<?php echo $date_filtre; ?>">
                     <button type="submit" class="btn btn-primary btn-small">Rechercher</button>
                 </div>
 

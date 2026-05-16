@@ -62,14 +62,13 @@ if ($_SESSION['role'] === 'organisateur' || $_SESSION['role'] === 'administrateu
 
             <!-- En-tête profil -->
             <div class="profil-header">
-                <div class="profil-avatar">
-                    <?php echo strtoupper(htmlspecialchars($_SESSION['prenom'])[0]); ?>
-                </div>
-                <div class="profil-infos">
-                    <h1><?php echo htmlspecialchars($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?></h1>
-                    <p><?php echo ucfirst($_SESSION['role']); ?> &bull; @<?php echo htmlspecialchars($_SESSION['nom_utilisateur']); ?></p>
-                </div>
+                <h1><?php echo htmlspecialchars($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?></h1>
+                <p><?php echo ucfirst($_SESSION['role']); ?> &bull; @<?php echo htmlspecialchars($_SESSION['nom_utilisateur']); ?></p>
             </div>
+
+            <?php if (isset($_GET['succes']) && $_GET['succes'] === 'supprime'): ?>
+                <div class="message-succes">L'événement a bien été supprimé.</div>
+            <?php endif; ?>
 
             <!-- Onglets -->
             <div class="onglets">
@@ -137,9 +136,14 @@ if ($_SESSION['role'] === 'organisateur' || $_SESSION['role'] === 'administrateu
                                     <h3><?php echo htmlspecialchars($event['titre']); ?></h3>
                                     <p><?php echo date('d/m/Y', strtotime($event['date_event'])); ?> - <?php echo htmlspecialchars($event['lieu']); ?></p>
                                 </div>
-                                <div class="orga-event-stats">
-                                    <span class="nombre"><?php echo $event['nb_inscrits']; ?></span>
-                                    <p>/ <?php echo $event['capacite_max']; ?> inscrits</p>
+                                <div class="orga-event-actions">
+                                    <span class="orga-event-compteur"><?php echo $event['nb_inscrits']; ?> / <?php echo $event['capacite_max']; ?></span>
+                                    <a href="gerer_inscriptions.php?id=<?php echo $event['id']; ?>" class="btn btn-outline btn-small">Gérer</a>
+                                    <a href="modifier_evenement.php?id=<?php echo $event['id']; ?>" class="btn btn-outline btn-small">Modifier</a>
+                                    <form action="supprimer_evenement.php" method="POST" onsubmit="return confirm('Supprimer cet événement ?');">
+                                        <input type="hidden" name="event_id" value="<?php echo $event['id']; ?>">
+                                        <button type="submit" class="btn btn-danger btn-small">Supprimer</button>
+                                    </form>
                                 </div>
                             </div>
                         <?php endforeach; ?>
