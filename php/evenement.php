@@ -52,6 +52,7 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/evenement.css">
+    <link rel="stylesheet" href="../css/favoris.css">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
@@ -66,16 +67,16 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
             <?php endif; ?>
 
             <div class="event-header">
-    <span class="badge badge-<?php echo $event['categorie']; ?>">
-        <?php echo ucfirst($event['categorie']); ?>
-    </span>
-    <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
+                <span class="badge badge-<?php echo $event['categorie']; ?>">
+                    <?php echo ucfirst($event['categorie']); ?>
+                </span>
+                <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
 
-    <!-- Bouton favoris -->
-    <button class="btn-favori" data-id="<?php echo $event['id']; ?>">
-        ♡ Ajouter aux favoris
-    </button>
-</div>
+                <!-- bouton favori -->
+                <button class="btn-favori" data-id="<?php echo $event['id']; ?>">
+                    ♡ Ajouter aux favoris
+                </button>
+            </div>
 
             <!-- Boutons de gestion pour l'organisateur ou l'admin -->
             <?php if (isset($_SESSION['id']) && ($_SESSION['role'] === 'administrateur' || $event['organisateur_id'] == $_SESSION['id'])): ?>

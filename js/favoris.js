@@ -1,40 +1,30 @@
-// Fonctionnalité favoris simple avec localStorage
-// Le localStorage permet de garder les favoris dans le navigateur
-
-let boutonFavori = document.querySelector('.btn-favori');
+//gestion du bouton favori sur la page événement
+var boutonFavori = document.querySelector('.btn-favori');
 
 if (boutonFavori) {
-    let idEvenement = boutonFavori.dataset.id;
+    var idEvenement = boutonFavori.dataset.id;
+    var favoris = JSON.parse(localStorage.getItem('favoris')) || [];
 
-    // On récupère les favoris déjà enregistrés
-    let favoris = JSON.parse(localStorage.getItem('favoris')) || [];
-
-    // Si cet événement est déjà dans les favoris, on change le texte du bouton
+    //si déjà en favori, on met le style actif
     if (favoris.includes(idEvenement)) {
         boutonFavori.classList.add('actif');
         boutonFavori.textContent = '♥ Retirer des favoris';
     }
 
+    //au clic on ajoute ou retire des favoris
     boutonFavori.addEventListener('click', function() {
         favoris = JSON.parse(localStorage.getItem('favoris')) || [];
 
         if (favoris.includes(idEvenement)) {
-            // Retirer des favoris
-            favoris = favoris.filter(function(id) {
-                return id !== idEvenement;
-            });
-
+            favoris = favoris.filter(function(id) { return id !== idEvenement; });
             boutonFavori.classList.remove('actif');
             boutonFavori.textContent = '♡ Ajouter aux favoris';
         } else {
-            // Ajouter aux favoris
             favoris.push(idEvenement);
-
             boutonFavori.classList.add('actif');
             boutonFavori.textContent = '♥ Retirer des favoris';
         }
 
-        // On sauvegarde la nouvelle liste dans le navigateur
         localStorage.setItem('favoris', JSON.stringify(favoris));
     });
 }

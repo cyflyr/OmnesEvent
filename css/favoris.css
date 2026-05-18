@@ -1,0 +1,53 @@
+/* ===== PAGE FAVORIS ===== */
+.page-favoris {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 40px 40px 0 40px;
+}
+
+.page-favoris h1 {
+    margin-bottom: 4px;
+}
+
+.sous-texte-favoris {
+    color: #8a8a9a;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+/* ===== BOUTON FAVORI SUR LA PAGE EVENEMENT ===== */
+.btn-favori {
+    margin-top: 12px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid #2a2a4a;
+    background-color: transparent;
+    color: #8a8a9a;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-favori:hover {
+    border-color: #7C3AED;
+    color: #e0e0e0;
+    background-color: rgba(124, 58, 237, 0.1);
+}
+
+.btn-favori.actif {
+    background-color: #7C3AED;
+    border-color: #7C3AED;
+    color: #ffffff;
+}
+
+.btn-favori.actif:hover {
+    background-color: #6D28D9;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .page-favoris {
+        padding: 20px 20px 0 20px;
+    }
+}

@@ -17,11 +17,9 @@
             <a href="<?php echo $racine; ?>php/admin.php">Admin</a>
         <?php endif; ?>
 
-        <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
-
         <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
-
         <a href="<?php echo $racine; ?>php/favoris.php">Favoris</a>
+        <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
     </div>
 
     <!-- Bouton hamburger pour mobile -->
@@ -42,10 +40,6 @@
 <div class="menu-mobile" id="menu-mobile">
     <a href="<?php echo $racine; ?>index.php">Accueil</a>
 
-    <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
-
-    <a href="<?php echo $racine; ?>php/favoris.php">Favoris</a>
-
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur'): ?>
         <a href="<?php echo $racine; ?>php/creer_evenement.php">Créer un événement</a>
     <?php endif; ?>
@@ -58,6 +52,8 @@
         <a href="<?php echo $racine; ?>php/admin.php">Admin</a>
     <?php endif; ?>
 
+    <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
+    <a href="<?php echo $racine; ?>php/favoris.php">Favoris</a>
     <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
 
     <div class="menu-mobile-separator"></div>
