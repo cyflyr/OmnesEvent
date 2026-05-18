@@ -61,7 +61,7 @@ $racine = '../';
 
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    <input type="password" name="password" placeholder="Votre mot de passe" required>
+                    <input type="password" name="password" placeholder="8 caractères minimum" minlength="8" required>
                 </div>
 
                 <div class="form-group">
