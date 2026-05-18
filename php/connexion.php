@@ -1,10 +1,11 @@
+
 <?php
 try {
-    //connexion à la base omnesevent
+    // connexion à la base omnesevent (adaptée pour MAMP)
     $bdd = new PDO(
-        'mysql:host=localhost;dbname=omnesevent;charset=utf8mb4',
+        'mysql:host=localhost;port=8889;dbname=omnesevent;charset=utf8mb4',
         'root',
-        '',
+        'root',
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
     );
 } catch (Exception $e) {
