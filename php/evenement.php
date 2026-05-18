@@ -177,12 +177,56 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
                 <?php elseif ($complet): ?>
                     <p class="event-complet">Cet événement est complet.</p>
 
-                <?php else: ?>
-                    <form action="inscription_event.php" method="POST">
-                        <input type="hidden" name="evenement_id" value="<?php echo $event['id']; ?>">
-                        <button type="submit" class="btn btn-primary mt-20">S'inscrire</button>
-                    </form>
-                <?php endif; ?>
+                    <?php else: ?>
+    <?php $est_payant = isset($event['prix']) && $event['prix'] > 0; ?>
+
+    <?php if ($est_payant): ?>
+        <!-- Prix affiché -->
+        <p class="event-prix">Prix : <strong><?php echo number_format($event['prix'], 2, ',', ''); ?> €</strong></p>
+
+        <!-- Formulaire CB simulé -->
+        <form action="inscription_event.php" method="POST" id="form-paiement">
+            <input type="hidden" name="evenement_id" value="<?php echo $event['id']; ?>">
+
+            <div class="form-group mt-20">
+                <label>Numéro de carte</label>
+                <input type="text" name="cb_numero" placeholder="1234 5678 9012 3456" maxlength="19" pattern="\d{4} \d{4} \d{4} \d{4}" required>
+            </div>
+            <div class="cb-ligne">
+                <div class="form-group">
+                    <label>Date d'expiration</label>
+                    <input type="text" name="cb_expiration" placeholder="MM/AA" maxlength="5" pattern="\d{2}/\d{2}" required>
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <input type="text" name="cb_cvv" placeholder="123" maxlength="3" pattern="\d{3}" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-20">Payer <?php echo number_format($event['prix'], 2, ',', ''); ?> € et s'inscrire</button>
+        </form>
+
+        <script>
+        document.querySelector('[name="cb_numero"]').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').substring(0, 16);
+            this.value = v.match(/.{1,4}/g)?.join(' ') || v;
+        });
+        document.querySelector('[name="cb_expiration"]').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').substring(0, 4);
+            if (v.length >= 3) v = v.substring(0,2) + '/' + v.substring(2);
+            this.value = v;
+        });
+        </script>
+
+    <?php else: ?>
+        <!-- Événement gratuit -->
+        <p class="event-prix gratuit">Événement gratuit</p>
+        <form action="inscription_event.php" method="POST">
+            <input type="hidden" name="evenement_id" value="<?php echo $event['id']; ?>">
+            <button type="submit" class="btn btn-primary mt-20">S'inscrire</button>
+        </form>
+    <?php endif; ?>
+
+<?php endif; ?>
             </div>
 
             <!-- Organisateur -->

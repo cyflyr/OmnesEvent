@@ -19,6 +19,8 @@ if (isset($_POST['titre'], $_POST['description'], $_POST['date_event'], $_POST['
     $categorie = $_POST['categorie'];
     $association = trim($_POST['association'] ?? '');
     $capacite_max = (int)$_POST['capacite_max'];
+    $prix = isset($_POST['prix']) ? max(0, (float)$_POST['prix']) : 0;
+    $prix = isset($_POST['prix']) ? max(0, (float)$_POST['prix']) : 0;
     $organisateur_id = $_SESSION['id'];
 
     //gestion de l'upload de l'affiche
@@ -43,9 +45,8 @@ if (isset($_POST['titre'], $_POST['description'], $_POST['date_event'], $_POST['
     }
 
     try {
-        $req = $bdd->prepare("INSERT INTO evenements (titre, description, date_event, heure, lieu, categorie, association, affiche, capacite_max, organisateur_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $req->execute(array($titre, $description, $date_event, $heure, $lieu, $categorie, $association, $nom_affiche, $capacite_max, $organisateur_id));
-
+        $req = $bdd->prepare("INSERT INTO evenements (titre, description, date_event, heure, lieu, categorie, association, affiche, capacite_max, prix, organisateur_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$req->execute(array($titre, $description, $date_event, $heure, $lieu, $categorie, $association, $nom_affiche, $capacite_max, $prix, $organisateur_id));
         //on récupère l'id de l'événement créé pour rediriger vers sa page
         $id_event = $bdd->lastInsertId();
 

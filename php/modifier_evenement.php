@@ -75,6 +75,11 @@ if ($_SESSION['role'] !== 'administrateur' && $event['organisateur_id'] != $_SES
                 </div>
 
                 <div class="form-group">
+                    <label>Prix (€) — laisser 0 pour un événement gratuit</label>
+                    <input type="number" name="prix" min="0" step="0.01" value="<?php echo number_format($event['prix'] ?? 0, 2, '.', ''); ?>">
+                </div>
+                
+                <div class="form-group">
                     <label>Date *</label>
                     <input type="date" name="date_event" value="<?php echo $event['date_event']; ?>" required>
                 </div>

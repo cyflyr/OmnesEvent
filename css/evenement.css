@@ -120,6 +120,19 @@
     color: #8a8a9a;
 }
 
+/* ===== PRIX ===== */
+.event-prix {
+    font-size: 18px;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+}
+.event-prix strong { color: #7C3AED; }
+.event-prix.gratuit { color: #4ade80; font-weight: 500; }
+
+/* ===== FORMULAIRE CB ===== */
+.cb-ligne { display: flex; gap: 16px; }
+.cb-ligne .form-group { flex: 1; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .event-detail {

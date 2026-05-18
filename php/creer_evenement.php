@@ -87,6 +87,11 @@ if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'organisateur' && $_SESS
                 </div>
 
                 <div class="form-group">
+                     <label>Prix (€) — laisser 0 pour un événement gratuit</label>
+                    <input type="number" name="prix" min="0" step="0.01" placeholder="0" value="0">
+                </div>
+
+                <div class="form-group">
                     <label>Affiche (image)</label>
                     <input type="file" name="affiche" accept="image/jpeg,image/png,image/webp">
                 </div>

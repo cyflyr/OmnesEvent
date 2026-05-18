@@ -35,6 +35,8 @@ if (isset($_POST['id'], $_POST['titre'], $_POST['description'], $_POST['date_eve
     $categorie = $_POST['categorie'];
     $association = trim($_POST['association'] ?? '');
     $capacite_max = (int)$_POST['capacite_max'];
+    $prix = isset($_POST['prix']) ? max(0, (float)$_POST['prix']) : 0;
+
 
     //gestion de la nouvelle affiche si on en uploade une
     $nom_affiche = $event['affiche'];
@@ -55,8 +57,8 @@ if (isset($_POST['id'], $_POST['titre'], $_POST['description'], $_POST['date_eve
     }
 
     try {
-        $req = $bdd->prepare("UPDATE evenements SET titre = ?, description = ?, date_event = ?, heure = ?, lieu = ?, categorie = ?, association = ?, affiche = ?, capacite_max = ? WHERE id = ?");
-        $req->execute(array($titre, $description, $date_event, $heure, $lieu, $categorie, $association, $nom_affiche, $capacite_max, $id_event));
+        $req = $bdd->prepare("UPDATE evenements SET titre = ?, description = ?, date_event = ?, heure = ?, lieu = ?, categorie = ?, association = ?, affiche = ?, capacite_max = ?, prix = ? WHERE id = ?");
+        $req->execute(array($titre, $description, $date_event, $heure, $lieu, $categorie, $association, $nom_affiche, $capacite_max, $prix, $id_event));
 
         header('Location: evenement.php?id=' . $id_event . '&succes=modifie');
         exit();
