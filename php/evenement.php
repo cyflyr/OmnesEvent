@@ -131,6 +131,34 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
                 <?php endif; ?>
             </div>
 
+
+                        <!-- Carte du lieu -->
+            <?php if (!empty($event['lieu'])): ?>
+                <div class="event-carte">
+                    <h3>Localisation</h3>
+
+                    <p class="carte-lieu">
+                        <?php echo htmlspecialchars($event['lieu']); ?>
+                    </p>
+
+                    <iframe
+                        src="https://maps.google.com/maps?q=<?php echo urlencode($event['lieu']); ?>&output=embed"
+                        width="100%"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode($event['lieu']); ?>"
+                        target="_blank"
+                        class="btn btn-outline btn-small mt-20">
+                        Ouvrir dans Google Maps
+                    </a>
+                </div>
+            <?php endif; ?>
+
             <!-- Description -->
             <div class="event-description">
                 <h3>Description</h3>

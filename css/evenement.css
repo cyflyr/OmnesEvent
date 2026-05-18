@@ -145,3 +145,26 @@
         gap: 2px;
     }
 }
+
+/* ===== CARTE LOCALISATION ===== */
+.event-carte {
+    margin-bottom: 30px;
+    padding: 24px;
+    background-color: #1a1a2e;
+    border-radius: 12px;
+    border: 1px solid #2a2a4a;
+}
+
+.event-carte h3 {
+    margin-bottom: 10px;
+}
+
+.carte-lieu {
+    color: #c0c0c0;
+    margin-bottom: 15px;
+}
+
+.event-carte iframe {
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
