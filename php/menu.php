@@ -18,6 +18,8 @@
         <?php endif; ?>
 
         <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
+
+        <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
     </div>
 
     <!-- Bouton hamburger pour mobile -->
@@ -37,6 +39,8 @@
 <!-- Menu mobile (caché par défaut) -->
 <div class="menu-mobile" id="menu-mobile">
     <a href="<?php echo $racine; ?>index.php">Accueil</a>
+
+    <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
 
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur'): ?>
         <a href="<?php echo $racine; ?>php/creer_evenement.php">Créer un événement</a>
