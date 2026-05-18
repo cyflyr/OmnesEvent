@@ -282,3 +282,11 @@
         text-align: center;
     }
 }
+
+/* Texte sur la page favoris */
+.texte-favoris {
+    max-width: 1240px;
+    margin: 0 auto 25px auto;
+    padding: 0 40px;
+    color: #aaa4bb;
+}
