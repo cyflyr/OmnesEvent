@@ -29,6 +29,7 @@ CREATE TABLE evenements (
     capacite_max INT NOT NULL,
     organisateur_id INT NOT NULL,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
+    prix decimal(10,0) DEFAULT '0'
     FOREIGN KEY (organisateur_id) REFERENCES utilisateurs(id)
 );
 
@@ -51,9 +52,9 @@ INSERT INTO utilisateurs (nom_utilisateur, password, prenom, nom, email, role, v
 ('admin', '$2y$10$fF0Yispku6/dCkIS3cfo8OAZkddJPjPQg8Z.BOdkbITPOYtxXXoMy', 'Admin', 'OmnesEvent', 'admin@omnesevent.fr', 'administrateur', 1);
 
 -- Quelques événements de test
-INSERT INTO evenements (titre, description, date_event, heure, lieu, categorie, association, capacite_max, organisateur_id) VALUES
-('Gala de fin d\'annee', 'La grande soiree de fin d\'annee organisee par le BDE. Dress code : chic !', '2026-06-15', '21:00:00', 'Salle des fetes, Campus Omnes', 'soiree', 'BDE', 250, 1),
-('Tournoi Inter-Ecoles Football', 'Tournoi de football entre les differentes ecoles du groupe Omnes.', '2026-06-22', '14:00:00', 'Terrain sportif, Puteaux', 'sport', 'BDS', 80, 1),
-('Conference IA et Sante', 'Decouvrez comment l\'intelligence artificielle transforme le monde de la sante.', '2026-06-28', '10:00:00', 'Amphitheatre B, Campus Paris', 'conference', 'Junior Entreprise', 120, 1),
-('Soiree Quiz Culture Generale', 'Testez vos connaissances lors de cette soiree quiz conviviale !', '2026-07-05', '19:00:00', 'Cafeteria, Campus Omnes', 'culture', 'BDE', 60, 1),
-('Marathon de Programmation', 'Hackathon de 12h pour developper un projet innovant en equipe.', '2026-07-12', '08:00:00', 'Salle informatique, Batiment C', 'culture', 'Junior Entreprise', 40, 1);
+INSERT INTO evenements (titre, description, date_event, heure, lieu, categorie, association, capacite_max,prix, organisateur_id) VALUES
+('Gala de fin d\'annee', 'La grande soiree de fin d\'annee organisee par le BDE. Dress code : chic !', '2026-06-15', '21:00:00', 'Salle des fetes, Campus Omnes', 'soiree', 'BDE', 250,0, 1),
+('Tournoi Inter-Ecoles Football', 'Tournoi de football entre les differentes ecoles du groupe Omnes.', '2026-06-22', '14:00:00', 'Terrain sportif, Puteaux', 'sport', 'BDS', 80,0, 1),
+('Conference IA et Sante', 'Decouvrez comment l\'intelligence artificielle transforme le monde de la sante.', '2026-06-28', '10:00:00', 'Amphitheatre B, Campus Paris', 'conference', 'Junior Entreprise', 120,0,1),
+('Soiree Quiz Culture Generale', 'Testez vos connaissances lors de cette soiree quiz conviviale !', '2026-07-05', '19:00:00', 'Cafeteria, Campus Omnes', 'culture', 'BDE', 60,0, 1),
+('Marathon de Programmation', 'Hackathon de 12h pour developper un projet innovant en equipe.', '2026-07-12', '08:00:00', 'Salle informatique, Batiment C', 'culture', 'Junior Entreprise', 40,0, 1);
