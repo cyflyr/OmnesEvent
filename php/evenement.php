@@ -66,11 +66,16 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
             <?php endif; ?>
 
             <div class="event-header">
-                <span class="badge badge-<?php echo $event['categorie']; ?>">
-                    <?php echo ucfirst($event['categorie']); ?>
-                </span>
-                <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
-            </div>
+    <span class="badge badge-<?php echo $event['categorie']; ?>">
+        <?php echo ucfirst($event['categorie']); ?>
+    </span>
+    <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
+
+    <!-- Bouton favoris -->
+    <button class="btn-favori" data-id="<?php echo $event['id']; ?>">
+        ♡ Ajouter aux favoris
+    </button>
+</div>
 
             <!-- Boutons de gestion pour l'organisateur ou l'admin -->
             <?php if (isset($_SESSION['id']) && ($_SESSION['role'] === 'administrateur' || $event['organisateur_id'] == $_SESSION['id'])): ?>
@@ -130,6 +135,34 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
                 </div>
                 <?php endif; ?>
             </div>
+
+
+                        <!-- Carte du lieu -->
+            <?php if (!empty($event['lieu'])): ?>
+                <div class="event-carte">
+                    <h3>Localisation</h3>
+
+                    <p class="carte-lieu">
+                        <?php echo htmlspecialchars($event['lieu']); ?>
+                    </p>
+
+                    <iframe
+                        src="https://maps.google.com/maps?q=<?php echo urlencode($event['lieu']); ?>&output=embed"
+                        width="100%"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode($event['lieu']); ?>"
+                        target="_blank"
+                        class="btn btn-outline btn-small mt-20">
+                        Ouvrir dans Google Maps
+                    </a>
+                </div>
+            <?php endif; ?>
 
             <!-- Description -->
             <div class="event-description">
@@ -240,5 +273,6 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
     <?php include_once('footer.php'); ?>
 
     <script src="../js/menu.js"></script>
+<script src="../js/favoris.js"></script>
 </body>
 </html>

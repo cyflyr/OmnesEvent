@@ -20,6 +20,8 @@
         <a href="<?php echo $racine; ?>php/contact.php">Contact</a>
 
         <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
+
+        <a href="<?php echo $racine; ?>php/favoris.php">Favoris</a>
     </div>
 
     <!-- Bouton hamburger pour mobile -->
@@ -41,6 +43,8 @@
     <a href="<?php echo $racine; ?>index.php">Accueil</a>
 
     <a href="<?php echo $racine; ?>php/calendrier.php">Calendrier</a>
+
+    <a href="<?php echo $racine; ?>php/favoris.php">Favoris</a>
 
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur'): ?>
         <a href="<?php echo $racine; ?>php/creer_evenement.php">Créer un événement</a>
