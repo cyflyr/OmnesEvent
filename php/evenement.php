@@ -66,11 +66,16 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
             <?php endif; ?>
 
             <div class="event-header">
-                <span class="badge badge-<?php echo $event['categorie']; ?>">
-                    <?php echo ucfirst($event['categorie']); ?>
-                </span>
-                <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
-            </div>
+    <span class="badge badge-<?php echo $event['categorie']; ?>">
+        <?php echo ucfirst($event['categorie']); ?>
+    </span>
+    <h1><?php echo htmlspecialchars($event['titre']); ?></h1>
+
+    <!-- Bouton favoris -->
+    <button class="btn-favori" data-id="<?php echo $event['id']; ?>">
+        ♡ Ajouter aux favoris
+    </button>
+</div>
 
             <!-- Boutons de gestion pour l'organisateur ou l'admin -->
             <?php if (isset($_SESSION['id']) && ($_SESSION['role'] === 'administrateur' || $event['organisateur_id'] == $_SESSION['id'])): ?>
@@ -268,5 +273,6 @@ $pourcentage = ($event['capacite_max'] > 0) ? round(($event['nb_inscrits'] / $ev
     <?php include_once('footer.php'); ?>
 
     <script src="../js/menu.js"></script>
+<script src="../js/favoris.js"></script>
 </body>
 </html>
