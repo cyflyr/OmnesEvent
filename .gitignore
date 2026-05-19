@@ -1,7 +1,3 @@
-# Fichiers de configuration locale
-.claude/
-CLAUDE.md
-
 # Dossier uploads (les affiches uploadées ne vont pas sur git)
 uploads/*
 !uploads/.gitkeep
